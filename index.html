@@ -1,0 +1,1869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0e0b09">
+<title>The Heart's Canvas — An Integrated Art Experience</title>
+<meta name="description" content="An infographic narrative of The Heart's Canvas by Concordio S. Quisaot — a book, a painting, a song, and an audiobook woven into one experience. Listen to any section aloud.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ══════════════════════ TOKENS ══════════════════════ */
+:root{
+  --ink:#0e0b09;
+  --ink-2:#161110;
+  --ink-3:#1d1714;
+  --cream:#f5ede1;
+  --gold:#c9973f;
+  --gold-2:#ecd08a;
+  --crimson:#a02e26;
+  --crimson-2:#6d1a15;
+  --blue:#2b4a6f;
+  --muted:rgba(245,237,225,.62);
+  --muted-2:rgba(245,237,225,.42);
+  --line:rgba(236,208,138,.16);
+  --line-2:rgba(236,208,138,.28);
+  --max:1140px;
+  --pad:clamp(1.25rem,4.5vw,2.5rem);
+  --ease:cubic-bezier(.22,.8,.24,1);
+}
+
+/* ══════════════════════ RESET ══════════════════════ */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body,h1,h2,h3,h4,p,figure,blockquote,ol,ul{margin:0;padding:0}
+ol,ul{list-style:none}
+img{max-width:100%;display:block}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+a{color:inherit}
+::selection{background:var(--crimson);color:#fff}
+
+/* ══════════════════════ BASE ══════════════════════ */
+body{
+  font-family:'Inter',system-ui,-apple-system,sans-serif;
+  font-weight:300;
+  font-size:clamp(15px,1.55vw,17px);
+  line-height:1.7;
+  background:var(--ink);
+  color:var(--cream);
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+  padding-bottom:calc(96px + env(safe-area-inset-bottom));
+}
+h1,h2,h3,h4{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-weight:400;line-height:1.12;letter-spacing:-.01em;
+}
+.wrap{width:100%;max-width:var(--max);margin-inline:auto}
+
+/* ══════════════════════ SCROLL PROGRESS ══════════════════════ */
+.progress{
+  position:fixed;top:0;left:0;height:2px;width:0%;
+  background:linear-gradient(90deg,var(--crimson),var(--gold));
+  z-index:100;transition:width .12s linear;
+}
+
+/* ══════════════════════ TTS BUTTONS ══════════════════════ */
+.tts-btn{
+  width:34px;height:34px;border-radius:50%;
+  display:inline-grid;place-items:center;
+  background:rgba(201,151,63,.1);
+  border:1px solid rgba(201,151,63,.34);
+  color:var(--gold-2);
+  vertical-align:middle;
+  transition:background .28s var(--ease),color .28s var(--ease),transform .28s var(--ease),border-color .28s;
+  -webkit-tap-highlight-color:transparent;
+  position:relative;z-index:3;
+}
+.tts-btn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.tts-btn:hover,.tts-btn:focus-visible{
+  background:var(--gold-2);color:var(--ink);border-color:var(--gold-2);
+  transform:scale(1.08);
+}
+.tts-btn--inline{
+  width:38px;height:38px;margin-left:.35em;
+  transform:translateY(-.06em);
+}
+.tts-btn--inline svg{width:18px;height:18px}
+.tts-btn.is-active{
+  background:var(--crimson);color:var(--gold-2);border-color:var(--crimson);
+  animation:breathe 1.8s ease-in-out infinite;
+}
+@keyframes breathe{0%,100%{box-shadow:0 0 0 0 rgba(160,46,38,.55)}50%{box-shadow:0 0 0 9px rgba(160,46,38,0)}}
+
+.tts-row{
+  display:flex;justify-content:flex-end;
+  margin-top:1rem;
+}
+.tts-row .tts-btn{width:32px;height:32px}
+
+.is-speaking{
+  outline:2px solid var(--gold);
+  outline-offset:6px;
+  border-radius:8px;
+  transition:outline-color .3s;
+}
+.is-speaking .tts-btn{
+  background:var(--crimson);color:var(--gold-2);border-color:var(--crimson);
+}
+
+/* ══════════════════════ HERO ══════════════════════ */
+.hero{
+  position:relative;
+  padding:clamp(3rem,9vw,6rem) var(--pad) clamp(2.5rem,6vw,4rem);
+  text-align:center;
+  overflow:hidden;
+  background:
+    radial-gradient(70% 55% at 18% 8%,rgba(160,46,38,.35),transparent 62%),
+    radial-gradient(65% 55% at 88% 92%,rgba(43,74,111,.4),transparent 62%),
+    linear-gradient(180deg,#120d0b,#0e0b09);
+}
+.hero::after{
+  content:'';position:absolute;left:50%;top:35%;transform:translate(-50%,-50%);
+  width:min(110vw,820px);aspect-ratio:1;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,151,63,.16),transparent 62%);
+  pointer-events:none;
+}
+.hero > *{position:relative;z-index:2}
+
+.kicker{
+  display:inline-block;
+  font-size:.68rem;font-weight:500;
+  letter-spacing:.3em;text-transform:uppercase;
+  color:var(--gold-2);opacity:.9;
+  margin-bottom:1.1rem;
+}
+
+.hero h1{
+  font-size:clamp(2.5rem,9.5vw,5.2rem);
+  margin-bottom:.5rem;
+  text-shadow:0 18px 50px rgba(0,0,0,.6);
+}
+.hero h1 em{
+  font-style:italic;
+  background:linear-gradient(115deg,#f6e3ae,#c9973f 48%,#f6e3ae);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.hero-author {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold-2);
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.hero-tag{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:clamp(1.05rem,2.8vw,1.4rem);
+  line-height:1.5;
+  color:rgba(245,237,225,.84);
+  max-width:36ch;
+  margin:0 auto 1.6rem;
+}
+
+.chips{
+  display:flex;flex-wrap:wrap;gap:.55rem;justify-content:center;
+  margin-bottom:2rem;
+}
+.chip{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:.5rem .95rem;border-radius:999px;
+  font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;font-weight:500;
+  border:1px solid var(--line-2);
+  color:rgba(245,237,225,.8);
+  background:rgba(255,255,255,.025);
+  text-decoration:none;
+  transition:border-color .3s,color .3s,background .3s,transform .3s var(--ease);
+}
+.chip:hover{border-color:var(--gold-2);color:var(--gold-2);background:rgba(236,208,138,.08);transform:translateY(-1px)}
+.chip svg{width:15px;height:15px;fill:none;stroke:var(--gold-2);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+
+.btn{
+  display:inline-flex;align-items:center;gap:.6rem;
+  padding:.9rem 1.8rem;border-radius:999px;
+  font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;
+  text-decoration:none;
+  transition:transform .3s var(--ease),box-shadow .3s,background .3s,color .3s,border-color .3s;
+}
+.btn svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.btn--primary{
+  background:linear-gradient(140deg,var(--crimson),var(--crimson-2));
+  color:var(--gold-2);
+  box-shadow:0 18px 44px -18px rgba(160,46,38,.95);
+}
+.btn--primary:hover{transform:translateY(-2px);box-shadow:0 24px 52px -18px rgba(160,46,38,1)}
+.btn--ghost{
+  border:1px solid var(--line-2);
+  color:rgba(245,237,225,.85);
+}
+.btn--ghost:hover{background:rgba(236,208,138,.1);border-color:var(--gold-2);color:var(--gold-2)}
+.btn--gold{
+  background:linear-gradient(140deg,var(--gold-2),var(--gold));
+  color:var(--ink);
+  box-shadow:0 18px 44px -18px rgba(201,151,63,.9);
+}
+.btn--gold:hover{transform:translateY(-2px);box-shadow:0 24px 52px -18px rgba(201,151,63,1)}
+.btn--fb{
+  background:linear-gradient(140deg,#3b5998,#2a4373);
+  color:#fff;
+  box-shadow:0 18px 44px -18px rgba(59,89,152,.95);
+}
+.btn--fb:hover{transform:translateY(-2px);box-shadow:0 24px 52px -18px rgba(59,89,152,1)}
+
+/* ══════════════════════ SECTION SHELL ══════════════════════ */
+.sec{
+  position:relative;
+  padding:clamp(3.5rem,8vw,6rem) var(--pad);
+  border-top:1px solid rgba(236,208,138,.07);
+}
+.sec--alt{background:linear-gradient(180deg,#120e0c,#0e0b09)}
+.sec--deep{
+  background:
+    radial-gradient(60% 45% at 12% 0%,rgba(160,46,38,.24),transparent 65%),
+    radial-gradient(60% 45% at 92% 100%,rgba(43,74,111,.3),transparent 65%),
+    #0d0a08;
+}
+
+.sec-head{
+  position:relative;
+  max-width:680px;
+  margin-bottom:clamp(2rem,5vw,3.2rem);
+}
+.sec-head--center{margin-inline:auto;text-align:center}
+.sec-num{
+  display:block;
+  font-family:'Cormorant Garamond',serif;
+  font-size:.8rem;letter-spacing:.34em;
+  color:var(--gold);
+  margin-bottom:.7rem;
+}
+.sec-head h2{
+  font-size:clamp(1.85rem,5vw,3rem);
+  margin-bottom:.9rem;
+}
+.sec-head h2 em{font-style:italic;color:var(--gold-2)}
+.sec-head p{
+  color:var(--muted);
+  max-width:58ch;
+  font-size:clamp(.95rem,2vw,1.05rem);
+}
+.sec-head--center p{margin-inline:auto}
+
+/* ══════════════════════ PILLARS GRID ══════════════════════ */
+.pillars{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:clamp(1rem,2.5vw,1.4rem);
+}
+@media(min-width:640px){.pillars{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1020px){.pillars{grid-template-columns:repeat(4,1fr)}}
+
+.pillar{
+  position:relative;
+  display:flex;flex-direction:column;
+  padding:clamp(1.5rem,3vw,1.9rem) clamp(1.3rem,2.6vw,1.6rem);
+  border-radius:16px;
+  background:linear-gradient(160deg,rgba(255,255,255,.045),rgba(255,255,255,.012));
+  border:1px solid var(--line);
+  transition:border-color .35s var(--ease),transform .35s var(--ease),background .35s;
+  overflow:hidden;
+  text-decoration:none;
+  color:inherit;
+  min-height:100%;
+  cursor:pointer;
+  text-align:left;
+}
+.pillar::before{
+  content:'';position:absolute;inset:0 auto auto 0;
+  width:100%;height:2px;
+  background:linear-gradient(90deg,var(--gold),transparent);
+  opacity:.45;
+}
+.pillar:hover{
+  border-color:var(--line-2);
+  transform:translateY(-4px);
+  background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02));
+}
+.pillar__num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2.4rem;line-height:1;
+  color:rgba(236,208,138,.22);
+  display:block;margin-bottom:.6rem;
+}
+.pillar__icon{
+  width:44px;height:44px;border-radius:12px;
+  display:grid;place-items:center;
+  background:rgba(201,151,63,.1);
+  border:1px solid rgba(201,151,63,.26);
+  color:var(--gold-2);
+  margin-bottom:1rem;
+}
+.pillar__icon svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.pillar h3{
+  font-size:1.35rem;
+  margin-bottom:.55rem;
+  color:var(--cream);
+}
+.pillar p{
+  font-size:.9rem;
+  line-height:1.65;
+  color:var(--muted);
+  flex:1;
+}
+.pillar__cta{
+  display:inline-flex;align-items:center;gap:.4rem;
+  margin-top:1.1rem;
+  font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;
+  color:var(--gold-2);
+  transition:gap .3s var(--ease),color .3s;
+}
+.pillar:hover .pillar__cta{gap:.7rem;color:#fff2cf}
+.pillar__cta svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* ══════════════════════ TIMELINE ══════════════════════ */
+.timeline{max-width:720px}
+.timeline__item{
+  position:relative;
+  padding:0 0 clamp(2rem,4vw,2.6rem) clamp(2.4rem,5vw,3.2rem);
+  border-left:1px solid rgba(201,151,63,.22);
+}
+.timeline__item:last-child{
+  border-left-color:transparent;
+  padding-bottom:0;
+}
+.timeline__dot{
+  position:absolute;left:-7px;top:.5rem;
+  width:13px;height:13px;border-radius:50%;
+  background:var(--ink);
+  border:2px solid var(--gold);
+  box-shadow:0 0 0 4px rgba(201,151,63,.08);
+}
+.timeline__item.is-speaking .timeline__dot{
+  background:var(--crimson);border-color:var(--gold-2);
+}
+.timeline__step{
+  display:block;
+  font-size:.64rem;letter-spacing:.28em;text-transform:uppercase;
+  color:var(--gold);font-weight:600;
+  margin-bottom:.45rem;
+}
+.timeline__item h3{
+  font-size:clamp(1.3rem,3.4vw,1.6rem);
+  margin-bottom:.5rem;
+}
+.timeline__item p{
+  font-size:.94rem;
+  color:var(--muted);
+  max-width:52ch;
+}
+
+/* ══════════════════════ STATS ══════════════════════ */
+.stats{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:clamp(.9rem,2.5vw,1.3rem);
+}
+@media(min-width:880px){.stats{grid-template-columns:repeat(4,1fr)}}
+
+.stat{
+  padding:clamp(1.4rem,3vw,1.8rem) clamp(1.1rem,2.4vw,1.5rem);
+  border-radius:16px;
+  background:rgba(255,255,255,.028);
+  border:1px solid var(--line);
+  text-align:center;
+  transition:border-color .35s,background .35s;
+}
+.stat:hover{border-color:var(--line-2);background:rgba(255,255,255,.05)}
+.stat__num{
+  display:block;
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.6rem,7vw,3.8rem);
+  line-height:1;
+  background:linear-gradient(160deg,#f6e3ae,#c9973f);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+  margin-bottom:.5rem;
+}
+.stat__label{
+  display:block;
+  font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;
+  font-weight:600;color:var(--gold-2);
+  margin-bottom:.6rem;
+}
+.stat p{
+  font-size:.82rem;line-height:1.6;color:var(--muted);
+}
+
+/* ══════════════════════ PALETTE ══════════════════════ */
+.palette{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:clamp(1rem,2.5vw,1.3rem);
+}
+@media(min-width:760px){.palette{grid-template-columns:repeat(3,1fr)}}
+
+.swatch{
+  border-radius:16px;
+  overflow:hidden;
+  background:rgba(255,255,255,.028);
+  border:1px solid var(--line);
+  transition:border-color .35s,transform .35s var(--ease);
+}
+.swatch:hover{border-color:var(--line-2);transform:translateY(-3px)}
+.swatch__chip{
+  height:78px;
+  background:var(--c);
+  position:relative;
+}
+.swatch__chip::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(0,0,0,.18),transparent 45%,rgba(0,0,0,.28));
+}
+.swatch__body{padding:1.3rem 1.3rem 1.5rem}
+.swatch h3{font-size:1.4rem;margin-bottom:.2rem}
+.swatch__hex{
+  font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--gold-2);font-weight:600;
+  margin-bottom:.7rem;
+}
+.swatch p{font-size:.87rem;line-height:1.6;color:var(--muted)}
+
+/* ══════════════════════ QUOTES ══════════════════════ */
+.quotes{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:clamp(1rem,2.5vw,1.3rem);
+}
+@media(min-width:760px){.quotes{grid-template-columns:repeat(2,1fr)}}
+
+.quote{
+  position:relative;
+  padding:clamp(1.6rem,3.4vw,2.1rem);
+  border-radius:16px;
+  background:linear-gradient(155deg,rgba(160,46,38,.14),rgba(255,255,255,.02));
+  border:1px solid rgba(160,46,38,.26);
+  transition:border-color .35s,transform .35s var(--ease);
+}
+.quote:hover{border-color:rgba(201,151,63,.45);transform:translateY(-3px)}
+.quote::before{
+  content:'“';
+  position:absolute;top:.1em;left:.35em;
+  font-family:'Cormorant Garamond',serif;
+  font-size:4.5rem;line-height:1;
+  color:rgba(236,208,138,.16);
+  pointer-events:none;
+}
+.quote p{
+  position:relative;
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:clamp(1.15rem,2.8vw,1.4rem);
+  line-height:1.45;
+  color:var(--cream);
+}
+.quote cite{
+  display:block;margin-top:1rem;
+  font-family:'Inter',sans-serif;font-style:normal;
+  font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--gold);
+}
+
+/* ══════════════════════ THREAD DIAGRAM ══════════════════════ */
+.thread{
+  position:relative;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:1rem;
+  margin-top:2rem;
+}
+@media(min-width:820px){
+  .thread{
+    grid-template-columns:repeat(4,1fr);
+    gap:0;
+    align-items:center;
+  }
+  .thread::before{
+    content:'';
+    position:absolute;left:8%;right:8%;top:50%;
+    height:2px;
+    background:linear-gradient(90deg,transparent,var(--gold) 12%,var(--gold-2) 50%,var(--gold) 88%,transparent);
+    opacity:.5;
+    z-index:0;
+  }
+}
+.thread__node{
+  position:relative;z-index:1;
+  display:flex;flex-direction:column;align-items:center;gap:.55rem;
+  padding:1.1rem .5rem;
+  text-decoration:none;color:inherit;
+}
+.thread__dot{
+  width:56px;height:56px;border-radius:50%;
+  display:grid;place-items:center;
+  background:radial-gradient(circle at 32% 28%,rgba(201,151,63,.28),rgba(14,11,9,.95));
+  border:1px solid var(--gold);
+  color:var(--gold-2);
+  box-shadow:0 0 26px -6px rgba(201,151,63,.55);
+  transition:transform .35s var(--ease),box-shadow .35s;
+}
+.thread__dot svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.thread__node:hover .thread__dot{transform:scale(1.08);box-shadow:0 0 36px -6px rgba(201,151,63,.85)}
+.thread__label{
+  font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;
+  font-weight:600;color:rgba(245,237,225,.78);
+  text-align:center;
+}
+
+/* ══════════════════════ RESOURCES / ACCESS ══════════════════════ */
+.resources{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:clamp(1rem,2.5vw,1.4rem);
+}
+@media(min-width:860px){.resources{grid-template-columns:repeat(3,1fr)}}
+
+.resource{
+  position:relative;
+  display:flex;flex-direction:column;
+  padding:clamp(1.6rem,3.2vw,2rem);
+  border-radius:18px;
+  border:1px solid var(--line);
+  background:linear-gradient(165deg,rgba(255,255,255,.05),rgba(255,255,255,.012));
+  text-decoration:none;color:inherit;
+  overflow:hidden;
+  transition:transform .38s var(--ease),border-color .38s,box-shadow .38s,background .38s;
+}
+.resource::after{
+  content:'';position:absolute;right:-40px;top:-40px;
+  width:150px;height:150px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,151,63,.18),transparent 68%);
+  opacity:0;transition:opacity .45s;
+}
+.resource:hover{
+  transform:translateY(-5px);
+  border-color:var(--line-2);
+  box-shadow:0 30px 60px -30px rgba(0,0,0,.9);
+}
+.resource:hover::after{opacity:1}
+
+.resource__top{
+  display:flex;align-items:center;gap:.85rem;
+  margin-bottom:1.1rem;
+}
+.resource__icon{
+  flex:none;
+  width:50px;height:50px;border-radius:14px;
+  display:grid;place-items:center;
+  border:1px solid var(--line-2);
+  color:var(--gold-2);
+  background:rgba(201,151,63,.08);
+  transition:background .35s,color .35s,border-color .35s;
+}
+.resource:hover .resource__icon{background:var(--gold-2);color:var(--ink);border-color:var(--gold-2)}
+.resource__icon svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.resource__kind{
+  display:block;
+  font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--gold);font-weight:600;
+  margin-bottom:.25rem;
+}
+.resource__name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.45rem;line-height:1.15;color:var(--cream);
+}
+.resource p{
+  font-size:.88rem;line-height:1.65;color:var(--muted);
+  flex:1;margin-bottom:1.4rem;
+}
+.resource__go{
+  display:inline-flex;align-items:center;justify-content:space-between;
+  gap:.6rem;
+  font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;font-weight:600;
+  color:var(--gold-2);
+  padding-top:1rem;
+  border-top:1px solid rgba(236,208,138,.14);
+}
+.resource__go span{display:inline-flex;align-items:center;gap:.45rem}
+.resource__go svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;transition:transform .35s var(--ease)}
+.resource:hover .resource__go svg{transform:translate(3px,-3px)}
+
+/* ══════════════════════ AUTHOR MODAL ══════════════════════ */
+.author-grid{
+  display:grid;grid-template-columns:1fr;gap:clamp(2rem,5vw,3.5rem);
+  align-items:start;
+  max-width:900px;margin-inline:auto;
+  padding-top: 1rem;
+}
+@media(min-width:820px){.author-grid{grid-template-columns:auto 1fr;gap:4rem}}
+.monogram{
+  width:clamp(110px,22vw,160px);aspect-ratio:1;border-radius:50%;
+  display:grid;place-items:center;
+  margin-inline:auto;
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.4rem,6vw,3.4rem);
+  color:var(--gold-2);
+  background:radial-gradient(circle at 30% 25%,rgba(160,46,38,.5),rgba(22,40,60,.55));
+  border:1px solid rgba(236,208,138,.3);
+  box-shadow:0 0 70px -12px rgba(201,151,63,.45),inset 0 0 40px rgba(0,0,0,.35);
+}
+.author-copy p{color:rgba(247,241,231,.74);max-width:62ch;font-size:.95rem;line-height:1.7}
+.author-copy p+p{margin-top:1.1rem}
+
+/* ══════════════════════ MODALS (SHARED) ══════════════════════ */
+.modal-overlay{
+  position:fixed;inset:0;z-index:200;
+  background:rgba(8,6,5,.94);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  display:flex;align-items:flex-start;justify-content:center;
+  padding:clamp(1.5rem,5vw,3rem) var(--pad);
+  overflow-y:auto;
+  opacity:0;pointer-events:none;
+  transition:opacity .4s var(--ease);
+}
+.modal-overlay.is-open{
+  opacity:1;pointer-events:auto;
+}
+.modal-content{
+  position:relative;
+  width:100%;max-width:900px;
+  margin:auto;
+  background:linear-gradient(165deg,#1a1311,#0f0b0a);
+  border:1px solid var(--line-2);
+  border-radius:20px;
+  padding:clamp(1.5rem,4vw,3rem);
+  box-shadow:0 50px 120px -30px rgba(0,0,0,.95);
+  transform:translateY(20px) scale(.98);
+  transition:transform .5s var(--ease);
+}
+.modal-overlay.is-open .modal-content{
+  transform:translateY(0) scale(1);
+}
+.modal-close{
+  position:absolute;top:1rem;right:1rem;
+  width:42px;height:42px;border-radius:50%;
+  display:grid;place-items:center;
+  background:rgba(255,255,255,.06);
+  border:1px solid var(--line);
+  color:var(--muted);
+  transition:background .3s,color .3s,transform .3s;
+  z-index:10;
+}
+.modal-close:hover{background:var(--crimson);color:#fff;transform:rotate(90deg)}
+.modal-close svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round}
+
+/* PAINTING MODAL SPECIFIC */
+.modal-image-wrap{
+  position:relative;
+  border-radius:12px;
+  overflow:hidden;
+  border:1px solid rgba(236,208,138,.2);
+  background:#0a0807;
+  margin-bottom:2rem;
+  box-shadow:0 20px 50px -20px rgba(0,0,0,.8);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  min-height:200px;
+}
+.modal-image-wrap img{
+  width:100%;height:auto;
+  display:block;
+}
+
+/* Image Upload Fallback */
+.upload-fallback{
+  display:none;
+  padding:3rem 1.5rem;
+  text-align:center;
+  width:100%;
+}
+.upload-fallback p{
+  color:var(--muted);
+  margin-bottom:1.5rem;
+  font-size:.9rem;
+}
+.upload-label{
+  display:inline-flex;
+  align-items:center;
+  gap:.6rem;
+  padding:.8rem 1.5rem;
+  border-radius:999px;
+  background:rgba(201,151,63,.1);
+  border:1px dashed var(--gold-2);
+  color:var(--gold-2);
+  font-size:.75rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:background .3s,color .3s,border-color .3s;
+}
+.upload-label:hover{background:var(--gold-2);color:var(--ink);border-color:var(--gold-2)}
+.upload-label svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+input[type="file"]{display:none}
+
+.modal-text h3{
+  font-size:clamp(1.6rem,4vw,2.2rem);
+  margin-bottom:1rem;
+  color:var(--gold-2);
+}
+.modal-text p{
+  font-size:.95rem;line-height:1.75;
+  color:rgba(245,237,225,.78);
+  margin-bottom:1.2rem;
+}
+.modal-text p:last-child{margin-bottom:0}
+
+/* ══════════════════════ CTA BAND ══════════════════════ */
+.cta-band{
+  text-align:center;
+  padding:clamp(2rem,5vw,3rem) clamp(1.3rem,4vw,2.5rem);
+  border-radius:20px;
+  background:
+    radial-gradient(80% 120% at 50% 0%,rgba(160,46,38,.28),transparent 68%),
+    linear-gradient(160deg,rgba(255,255,255,.05),rgba(255,255,255,.015));
+  border:1px solid var(--line-2);
+}
+.cta-band h2{
+  font-size:clamp(1.7rem,4.5vw,2.6rem);
+  margin-bottom:.8rem;
+}
+.cta-band h2 em{font-style:italic;color:var(--gold-2)}
+.cta-band p{
+  color:var(--muted);
+  max-width:50ch;margin:0 auto 1.8rem;
+  font-size:.96rem;
+}
+.cta-actions{
+  display:flex;flex-wrap:wrap;gap:.7rem;justify-content:center;
+}
+
+/* ══════════════════════ FOOTER ══════════════════════ */
+.footer{
+  padding:clamp(2.5rem,6vw,3.5rem) var(--pad);
+  text-align:center;
+  background:linear-gradient(180deg,#0c0907,#070505);
+  border-top:1px solid rgba(236,208,138,.09);
+}
+.footer__title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.4rem;color:var(--gold-2);
+  margin-bottom:.7rem;
+}
+.footer p{font-size:.76rem;color:var(--muted-2);letter-spacing:.05em}
+.footer__sub{
+  margin-top:.55rem;
+  font-size:.64rem;letter-spacing:.24em;text-transform:uppercase;
+  color:rgba(236,208,138,.42);
+}
+.footer__links{
+  display:flex;flex-wrap:wrap;gap:.5rem 1.2rem;justify-content:center;
+  margin-top:1.4rem;
+}
+.footer__links a, .footer__links button{
+  font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;font-weight:600;
+  color:rgba(236,208,138,.72);
+  text-decoration:none;
+  border-bottom:1px solid transparent;
+  padding-bottom:2px;
+  transition:color .3s,border-color .3s;
+}
+.footer__links a:hover, .footer__links button:hover{color:var(--gold-2);border-color:var(--gold-2)}
+
+/* ══════════════════════ FLOATING TTS BAR ══════════════════════ */
+.tts-bar{
+  position:fixed;
+  left:50%;bottom:calc(14px + env(safe-area-inset-bottom));
+  transform:translateX(-50%);
+  z-index:90;
+  display:flex;align-items:center;gap:.55rem;
+  padding:.5rem .7rem;
+  border-radius:999px;
+  background:rgba(16,12,10,.9);
+  border:1px solid var(--line-2);
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  box-shadow:0 22px 60px -22px rgba(0,0,0,.95),0 0 0 1px rgba(0,0,0,.3);
+  max-width:calc(100vw - 24px);
+}
+.tts-bar__play,.tts-bar__stop{
+  flex:none;
+  width:44px;height:44px;border-radius:50%;
+  display:grid;place-items:center;
+  transition:transform .25s var(--ease),background .25s,color .25s;
+}
+.tts-bar__play{
+  background:linear-gradient(140deg,var(--crimson),var(--crimson-2));
+  color:var(--gold-2);
+  box-shadow:0 8px 22px -8px rgba(160,46,38,.95);
+}
+.tts-bar__play:hover{transform:scale(1.07)}
+.tts-bar__stop{
+  width:36px;height:36px;
+  background:rgba(255,255,255,.06);
+  border:1px solid var(--line);
+  color:rgba(245,237,225,.7);
+}
+.tts-bar__stop:hover{background:rgba(255,255,255,.12);color:var(--gold-2)}
+.tts-bar__play svg,.tts-bar__stop svg{width:17px;height:17px;fill:currentColor}
+
+.tts-bar__meta{
+  display:flex;flex-direction:column;gap:.3rem;
+  min-width:92px;max-width:180px;
+  padding-right:.3rem;
+}
+.tts-bar__status{
+  font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;
+  font-weight:600;color:rgba(245,237,225,.75);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.tts-bar__track{
+  height:3px;border-radius:999px;
+  background:rgba(245,237,225,.14);
+  overflow:hidden;
+}
+.tts-bar__fill{
+  height:100%;width:0%;
+  border-radius:999px;
+  background:linear-gradient(90deg,var(--crimson),var(--gold-2));
+  transition:width .25s linear;
+}
+
+.tts-bar select{
+  appearance:none;-webkit-appearance:none;
+  font-family:'Inter',sans-serif;
+  font-size:.68rem;font-weight:500;
+  color:rgba(245,237,225,.8);
+  background:rgba(255,255,255,.055);
+  border:1px solid var(--line);
+  border-radius:999px;
+  padding:.45rem 1.6rem .45rem .7rem;
+  cursor:pointer;
+  background-image:url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23ecd08a' stroke-width='1.4' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right .6rem center;
+  max-width:120px;
+}
+.tts-bar select:hover{border-color:var(--line-2)}
+.tts-bar select option{background:#1a1411;color:#f5ede1}
+#ttsVoice{max-width:112px}
+
+@media(max-width:680px){
+  .tts-bar{
+    flex-wrap:wrap;justify-content:center;
+    border-radius:20px;
+    padding:.55rem .7rem;
+    gap:.45rem;
+  }
+  .tts-bar__meta{min-width:auto;flex:1 1 100%;order:3;padding:0 .3rem}
+  #ttsVoice{max-width:104px}
+}
+
+/* ══════════════════════ REVEAL ══════════════════════ */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.reveal.is-in{opacity:1;transform:none}
+
+/* ══════════════════════ MISC ══════════════════════ */
+:focus-visible{outline:2px solid var(--gold-2);outline-offset:3px;border-radius:6px}
+.no-tts .tts-btn,.no-tts .tts-row,.no-tts .tts-bar{display:none!important}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+
+<body>
+
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<!-- ══════════════════ HERO ══════════════════ -->
+<header class="hero">
+  <p class="kicker">An Integrated Art Experience</p>
+
+  <h1 data-tts>The Heart's <em>Canvas</em></h1>
+  
+  <p class="hero-author">Concordio S. Quisaot</p>
+
+  <p class="hero-tag" data-tts>
+    Every heart is a canvas, every connection a masterpiece,
+    and every journey an endless horizon.
+  </p>
+
+  <div class="chips">
+    <a class="chip" href="https://drive.google.com/file/d/1-axI9KZm3ZT2Xfg0U3GKdkML61EgY7Vb/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+      Book
+    </a>
+    <button class="chip" id="chipPainting" type="button">
+      <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 16l-5-5-9 9"/></svg>
+      Painting
+    </button>
+    <a class="chip" href="https://www.facebook.com/reel/966770811552370" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+      Song
+    </a>
+    <a class="chip" href="https://drive.google.com/file/d/1VMmQSWuj3qfMx6zX72T-oBNm61fEr7xE/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+      <svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+      Audiobook
+    </a>
+    <button class="chip" id="chipAuthor" type="button">
+      <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      Author
+    </button>
+  </div>
+
+  <div class="cta-actions">
+    <button class="btn btn--primary" id="heroListen" type="button">
+      <svg viewBox="0 0 24 24"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a9 9 0 0 1 0 14"/></svg>
+      Listen to this page
+    </button>
+    <a class="btn btn--ghost" href="#access">
+      Open the Works
+      <svg viewBox="0 0 24 24"><path d="M7 17L17 7"/><path d="M9 7h8v8"/></svg>
+    </a>
+  </div>
+</header>
+
+<main>
+
+<!-- ══════════════════ 01 · PILLARS ══════════════════ -->
+<section class="sec sec--alt" id="pillars">
+  <div class="wrap">
+    <header class="sec-head reveal" data-tts>
+      <span class="sec-num tts-skip">01</span>
+      <h2>One Story, <em>Four Forms</em></h2>
+      <p>The Heart's Canvas is not a book with extras. It is a single narrative told in four languages at once — words, pigment, sound, and voice — each one translating the others.</p>
+    </header>
+
+    <div class="pillars">
+      <!-- THE BOOK -->
+      <a class="pillar reveal" data-tts
+         href="https://drive.google.com/file/d/1-axI9KZm3ZT2Xfg0U3GKdkML61EgY7Vb/view?usp=sharing"
+         target="_blank" rel="noopener noreferrer">
+        <span class="pillar__num tts-skip">01</span>
+        <span class="pillar__icon">
+          <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        </span>
+        <h3>The Book</h3>
+        <p>A novel about a painter who lost his color, and the stranger who asked him to paint the journey into someone's heart.</p>
+        <span class="pillar__cta">
+          Read the Book
+          <svg viewBox="0 0 24 24"><path d="M7 17L17 7"/><path d="M9 7h8v8"/></svg>
+        </span>
+      </a>
+
+      <!-- THE PAINTING -->
+      <button class="pillar reveal" data-tts id="pillarPainting">
+        <span class="pillar__num tts-skip">02</span>
+        <span class="pillar__icon">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 16l-5-5-9 9"/></svg>
+        </span>
+        <h3>The Painting</h3>
+        <p>The cover artwork: two figures leaning toward one another, bound by a single fragile thread of gold.</p>
+        <span class="pillar__cta">
+          View the Painting
+          <svg viewBox="0 0 24 24"><path d="M15 3h6v6"/><path d="M10 14L21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+        </span>
+      </button>
+
+      <!-- THE SONG -->
+      <a class="pillar reveal" data-tts
+         href="https://www.facebook.com/reel/966770811552370"
+         target="_blank" rel="noopener noreferrer">
+        <span class="pillar__num tts-skip">03</span>
+        <span class="pillar__icon">
+          <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        </span>
+        <h3>The Song</h3>
+        <p>An original composition that translates the canvas into sound — crimson passion, gold hope, blue introspection.</p>
+        <span class="pillar__cta">
+          Watch the Reel
+          <svg viewBox="0 0 24 24"><path d="M7 17L17 7"/><path d="M9 7h8v8"/></svg>
+        </span>
+      </a>
+
+      <!-- THE AUDIOBOOK -->
+      <a class="pillar reveal" data-tts
+         href="https://drive.google.com/file/d/1VMmQSWuj3qfMx6zX72T-oBNm61fEr7xE/view?usp=sharing"
+         target="_blank" rel="noopener noreferrer">
+        <span class="pillar__num tts-skip">04</span>
+        <span class="pillar__icon">
+          <svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+        </span>
+        <h3>The Audiobook</h3>
+        <p>The novel, narrated — for commutes, for walks, and for listening with your eyes closed in front of the painting.</p>
+        <span class="pillar__cta">
+          Play the Audiobook
+          <svg viewBox="0 0 24 24"><path d="M7 17L17 7"/><path d="M9 7h8v8"/></svg>
+        </span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ 02 · JOURNEY ══════════════════ -->
+<section class="sec" id="journey">
+  <div class="wrap">
+    <header class="sec-head reveal" data-tts>
+      <span class="sec-num tts-skip">02</span>
+      <h2>The Journey in <em>Five Turns</em></h2>
+      <p>Every story begins with a seed. This one begins with a blank canvas, a knock at the door, and a request that sounds impossible.</p>
+    </header>
+
+    <ol class="timeline">
+      <li class="timeline__item reveal" data-tts>
+        <span class="timeline__dot tts-skip"></span>
+        <span class="timeline__step tts-skip">Turn 01</span>
+        <h3>The Gray Studio</h3>
+        <p>Aurelio has not finished a painting in years. Dust settles on his brushes, and the blank canvas has become a mirror of everything he has buried.</p>
+      </li>
+
+      <li class="timeline__item reveal" data-tts>
+        <span class="timeline__dot tts-skip"></span>
+        <span class="timeline__step tts-skip">Turn 02</span>
+        <h3>The Knock</h3>
+        <p>Celeste arrives with an absurd commission: paint the journey into someone's heart. He tells her it is impossible. She tells him impossible is just something no one has tried yet.</p>
+      </li>
+
+      <li class="timeline__item reveal" data-tts>
+        <span class="timeline__dot tts-skip"></span>
+        <span class="timeline__step tts-skip">Turn 03</span>
+        <h3>The Town's Heart</h3>
+        <p>The square comes alive again — lanterns, chalk murals, music. The town remembers what it lost, and Aurelio watches from the shadows, wanting to step forward.</p>
+      </li>
+
+      <li class="timeline__item reveal" data-tts>
+        <span class="timeline__dot tts-skip"></span>
+        <span class="timeline__step tts-skip">Turn 04</span>
+        <h3>The Storm</h3>
+        <p>The gallery windows shatter. Paintings bleed into one another on the flooded floor. For a moment, everything he built seems gone.</p>
+      </li>
+
+      <li class="timeline__item reveal" data-tts>
+        <span class="timeline__dot tts-skip"></span>
+        <span class="timeline__step tts-skip">Turn 05</span>
+        <h3>The Canvas</h3>
+        <p>What remains is not the work but the ability to make it. Art isn't about holding on. It's about letting go — and beginning again.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ══════════════════ 03 · NUMBERS ══════════════════ -->
+<section class="sec sec--alt" id="numbers">
+  <div class="wrap">
+    <header class="sec-head sec-head--center reveal" data-tts>
+      <span class="sec-num tts-skip">03</span>
+      <h2>By the <em>Numbers</em></h2>
+      <p>A small set of facts that hold the whole experience together.</p>
+    </header>
+
+    <div class="stats">
+      <div class="stat reveal" data-tts>
+        <span class="stat__num tts-skip">4</span>
+        <span class="stat__label">Art Forms</span>
+        <p>Book, painting, song, and audiobook — one narrative, four languages.</p>
+      </div>
+
+      <div class="stat reveal" data-tts>
+        <span class="stat__num tts-skip">3</span>
+        <span class="stat__label">Colors</span>
+        <p>Crimson, gold, and blue carry the entire emotional arc of the story.</p>
+      </div>
+
+      <div class="stat reveal" data-tts>
+        <span class="stat__num tts-skip">2</span>
+        <span class="stat__label">Figures</span>
+        <p>Two souls reaching toward one another, joined by a single golden thread.</p>
+      </div>
+
+      <div class="stat reveal" data-tts>
+        <span class="stat__num tts-skip">∞</span>
+        <span class="stat__label">Horizons</span>
+        <p>Because a canvas is never finished. It is only becoming.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ 04 · PALETTE ══════════════════ -->
+<section class="sec" id="palette">
+  <div class="wrap">
+    <header class="sec-head reveal" data-tts>
+      <span class="sec-num tts-skip">04</span>
+      <h2>The <em>Palette</em></h2>
+      <p>Three colors, three arguments. Together they form the emotional grammar of The Heart's Canvas.</p>
+    </header>
+
+    <div class="palette">
+      <article class="swatch reveal" data-tts>
+        <div class="swatch__chip tts-skip" style="--c:#a02e26"></div>
+        <div class="swatch__body">
+          <h3>Crimson</h3>
+          <p class="swatch__hex">#A02E26</p>
+          <p>Passion — the flame of love, and the color that refuses to be ignored. It is the first thing the eye finds in the painting.</p>
+        </div>
+      </article>
+
+      <article class="swatch reveal" data-tts>
+        <div class="swatch__chip tts-skip" style="--c:#c9973f"></div>
+        <div class="swatch__body">
+          <h3>Gold</h3>
+          <p class="swatch__hex">#C9973F</p>
+          <p>Hope — the thread that runs between two figures. Fragile to look at, unbreakable in meaning.</p>
+        </div>
+      </article>
+
+      <article class="swatch reveal" data-tts>
+        <div class="swatch__chip tts-skip" style="--c:#2b4a6f"></div>
+        <div class="swatch__body">
+          <h3>Blue</h3>
+          <p class="swatch__hex">#2B4A6F</p>
+          <p>Introspection — the calm that grounds the chaos. It is the color of the studio before Celeste knocks.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ 05 · QUOTES ══════════════════ -->
+<section class="sec sec--deep" id="words">
+  <div class="wrap">
+    <header class="sec-head sec-head--center reveal" data-tts>
+      <span class="sec-num tts-skip">05</span>
+      <h2>In Their <em>Own Words</em></h2>
+      <p>Four lines that carry the philosophy of the whole work.</p>
+    </header>
+
+    <div class="quotes">
+      <blockquote class="quote reveal" data-tts>
+        <p>Every heart is a canvas, every connection a masterpiece, and every journey an endless horizon.</p>
+        <cite>The Heart's Canvas</cite>
+      </blockquote>
+
+      <blockquote class="quote reveal" data-tts>
+        <p>It's not about perfection. It's about being honest.</p>
+        <cite>Celeste</cite>
+      </blockquote>
+
+      <blockquote class="quote reveal" data-tts>
+        <p>Art and love are the same — they both require courage to start without knowing how they'll end.</p>
+        <cite>Celeste</cite>
+      </blockquote>
+
+      <blockquote class="quote reveal" data-tts>
+        <p>Letting go doesn't mean losing.</p>
+        <cite>The letter</cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ 06 · THREAD ══════════════════ -->
+<section class="sec" id="thread">
+  <div class="wrap">
+    <header class="sec-head sec-head--center reveal" data-tts>
+      <span class="sec-num tts-skip">06</span>
+      <h2>A Single <em>Thread</em></h2>
+      <p>Four forms, one story. The book gives the painting its narrative. The painting gives the song its color. The song gives the audiobook its pulse. And the audiobook gives the book its voice.</p>
+    </header>
+
+    <div class="thread reveal">
+      <a class="thread__node" href="https://drive.google.com/file/d/1-axI9KZm3ZT2Xfg0U3GKdkML61EgY7Vb/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+        <span class="thread__dot">
+          <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        </span>
+        <span class="thread__label">Book</span>
+      </a>
+
+      <button class="thread__node" id="threadPainting">
+        <span class="thread__dot">
+          <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="M21 16l-5-5-9 9"/></svg>
+        </span>
+        <span class="thread__label">Painting</span>
+      </button>
+
+      <a class="thread__node" href="https://www.facebook.com/reel/966770811552370" target="_blank" rel="noopener noreferrer">
+        <span class="thread__dot">
+          <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        </span>
+        <span class="thread__label">Song</span>
+      </a>
+
+      <a class="thread__node" href="https://drive.google.com/file/d/1VMmQSWuj3qfMx6zX72T-oBNm61fEr7xE/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+        <span class="thread__dot">
+          <svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+        </span>
+        <span class="thread__label">Audiobook</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ 07 · ACCESS THE WORKS ══════════════════ -->
+<section class="sec sec--alt" id="access">
+  <div class="wrap">
+    <header class="sec-head sec-head--center reveal" data-tts>
+      <span class="sec-num tts-skip">07</span>
+      <h2>Access the <em>Works</em></h2>
+      <p>All four forms are available now. Open the book, watch the song, or press play on the audiobook — each link opens in a new tab.</p>
+    </header>
+
+    <div class="resources">
+      <!-- BOOK -->
+      <a class="resource reveal" data-tts
+         href="https://drive.google.com/file/d/1-axI9KZm3ZT2Xfg0U3GKdkML61EgY7Vb/view?usp=sharing"
+         target="_blank" rel="noopener noreferrer">
+        <div class="resource__top">
+          <span class="resource__icon">
+            <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+          </span>
+          <div>
+            <span class="resource__kind">01 · Google Drive</span>
+            <span class="resource__name">The Book</span>
+          </div>
+        </div>
+        <p>The complete novel — Aurelio, Celeste, the town square, and the storm. Read it in full on Google Drive.</p>
+        <span class="resource__go">
+          <span>Open the Book</span>
+          <svg viewBox="0 0 24 24"><path d="M7 17L17 7"/><path d="M9 7h8v8"/></svg>
+        </span>
+      </a>
+
+      <!-- SONG -->
+      <a class="resource reveal" data-tts
+         href="https://www.facebook.com/reel/966770811552370"
+         target="_blank" rel="noopener noreferrer">
+        <div class="resource__top">
+          <span class="resource__icon">
+            <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+          </span>
+          <div>
+            <span class="resource__kind">03 · Facebook Reel</span>
+            <span class="resource__name">The Song</span>
+          </div>
+        </div>
+        <p>The original composition set to the painting. Watch the reel and hear the canvas turn into sound.</p>
+        <span class="resource__go">
+          <span>Watch the Song</span>
+          <svg viewBox="0 0 24 24"><path d="M7 17L17 7"/><path d="M9 7h8v8"/></svg>
+        </span>
+      </a>
+
+      <!-- AUDIOBOOK -->
+      <a class="resource reveal" data-tts
+         href="https://drive.google.com/file/d/1VMmQSWuj3qfMx6zX72T-oBNm61fEr7xE/view?usp=sharing"
+         target="_blank" rel="noopener noreferrer">
+        <div class="resource__top">
+          <span class="resource__icon">
+            <svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+          </span>
+          <div>
+            <span class="resource__kind">04 · Google Drive</span>
+            <span class="resource__name">The Audiobook</span>
+          </div>
+        </div>
+        <p>The full novel, narrated. Press play on Google Drive and let the story unfold in your ears.</p>
+        <span class="resource__go">
+          <span>Play the Audiobook</span>
+          <svg viewBox="0 0 24 24"><path d="M7 17L17 7"/><path d="M9 7h8v8"/></svg>
+        </span>
+      </a>
+    </div>
+
+    <p class="reveal" data-tts style="margin-top:1.6rem;font-size:.78rem;letter-spacing:.04em;color:rgba(245,237,225,.45);text-align:center;">
+      The painting lives on this page — click "The Painting" above to view it. The book, song, and audiobook open in a new tab.
+    </p>
+  </div>
+</section>
+
+<!-- ══════════════════ 08 · BEGIN ══════════════════ -->
+<section class="sec" id="begin">
+  <div class="wrap">
+    <div class="cta-band reveal" data-tts>
+      <h2>Begin <em>Anywhere</em></h2>
+      <p>Start with the book, sit with the painting, listen to the song, or close your eyes for the audiobook. The thread connects them all — you only have to pick it up.</p>
+    </div>
+
+    <div class="cta-actions" style="margin-top:2rem;">
+      <a class="btn btn--primary" href="https://drive.google.com/file/d/1-axI9KZm3ZT2Xfg0U3GKdkML61EgY7Vb/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+        Get the Book
+      </a>
+      <a class="btn btn--fb" href="https://www.facebook.com/reel/966770811552370" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        Watch the Song
+      </a>
+      <a class="btn btn--gold" href="https://drive.google.com/file/d/1VMmQSWuj3qfMx6zX72T-oBNm61fEr7xE/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>
+        Play the Audiobook
+      </a>
+      <button class="btn btn--ghost" id="listenAll2" type="button">
+        <svg viewBox="0 0 24 24"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a9 9 0 0 1 0 14"/></svg>
+        Listen to the Whole Page
+      </button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer class="footer">
+  <p class="footer__title">The Heart's Canvas</p>
+  <p data-tts>© 2024 Concordio S. Quisaot. All rights reserved.</p>
+  <p class="footer__sub">Book · Painting · Song · Audiobook</p>
+
+  <div class="footer__links">
+    <a href="https://drive.google.com/file/d/1-axI9KZm3ZT2Xfg0U3GKdkML61EgY7Vb/view?usp=sharing" target="_blank" rel="noopener noreferrer">The Book</a>
+    <button id="footerPainting">The Painting</button>
+    <a href="https://www.facebook.com/reel/966770811552370" target="_blank" rel="noopener noreferrer">The Song</a>
+    <a href="https://drive.google.com/file/d/1VMmQSWuj3qfMx6zX72T-oBNm61fEr7xE/view?usp=sharing" target="_blank" rel="noopener noreferrer">The Audiobook</a>
+    <button id="footerAuthor">The Author</button>
+  </div>
+</footer>
+
+<!-- ══════════════════ PAINTING MODAL ══════════════════ -->
+<div class="modal-overlay" id="paintingModal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="The Painting">
+  <div class="modal-content">
+    <button class="modal-close" id="closeModal" aria-label="Close painting view">
+      <svg viewBox="0 0 24 24"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+    </button>
+
+    <div class="modal-image-wrap">
+      <!-- The image below will attempt to load from 'assets/painting.jpg'. If it fails, the uploader appears. -->
+      <img id="modalPaintingImg" src="assets/painting.jpg" 
+           alt="The Heart's Canvas — framed original painting showing two abstract faces facing each other, connected by swirling colors and a central golden glow." 
+           onerror="this.style.display='none'; document.getElementById('uploadFallback').style.display='block';">
+      
+      <div class="upload-fallback" id="uploadFallback">
+        <p>Image not found? Select the painting image from your device to view it here.</p>
+        <label class="upload-label" for="fileInput">
+          <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          Upload Image
+        </label>
+        <input type="file" id="fileInput" accept="image/*">
+      </div>
+    </div>
+
+    <div class="modal-text" data-tts>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-weight:400;color:var(--gold-2);margin-bottom:1rem;">The Painting: An Emotion, Not an Object</h3>
+      
+      <p>This is not a picture of two people. Look closely, and you will not find a single literal object in it. There are no landscapes, no furniture, no recognizable setting. There are only two silhouettes, swirling currents of color, and a faint, luminous thread binding them together.</p>
+      
+      <p>The artist, Aurelio, paints what he feels rather than what he sees. His philosophy — and the heart of this book — is that true art is not about capturing the physical world, but about capturing the emotional imprint it leaves behind. The swirling reds and purples are not clouds; they are passion, chaos, and the overwhelming energy of being truly seen by another person. The deep blues are not water; they are introspection, the quiet ache of vulnerability. And the gold — that central glow where the two faces almost touch — is the unbreakable thread of connection.</p>
+      
+      <p>Notice how the background fades into a dreamlike abstraction. That is intentional. In the presence of real connection, the rest of the world loses its sharp edges. It becomes blurred and unimportant. The two figures become the entire universe.</p>
+      
+      <p>This painting is a manifestation of the book's central philosophy: that art is not about holding on to perfection, but about letting go into honesty. It is the visual echo of Celeste's words to Aurelio — that we should paint the journey into someone's heart, not just the scenery along the way.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ AUTHOR MODAL ══════════════════ -->
+<div class="modal-overlay" id="authorModal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="About the Author">
+  <div class="modal-content">
+    <button class="modal-close" id="closeAuthorModal" aria-label="Close author view">
+      <svg viewBox="0 0 24 24"><path d="M18 6L6 18"/><path d="M6 6l12 12"/></svg>
+    </button>
+
+    <div class="author-grid">
+      <div class="monogram" aria-hidden="true">CQ</div>
+
+      <div class="author-copy">
+        <h3 style="font-family:'Cormorant Garamond',serif;font-weight:400;color:var(--gold-2);margin-bottom:1.2rem;font-size:clamp(1.8rem, 4vw, 2.4rem);">Concordio S. Quisaot</h3>
+        
+        <p data-tts>Concordio "Concon" Quisaot is a Certified Public Accountant, lawyer, educator, and musician whose career spans the power industry, academe, and digital transformation. He has served as Controller, Chief Financial Officer, Auditor General, and Assistant General Manager for three electric cooperatives, and as Dean of a business school.</p>
+        
+        <p data-tts>He is the author of <em>My Philosophy of Life</em>, <em>A Journey to Wholeness</em>, and <em>Beyond Survival: The Stages of Civilization from Earth to Cosmos</em> — and the pioneer of <em>Integrative Art</em>, a philosophy that treats human creativity and artificial intelligence as collaborators rather than competitors.</p>
+        
+        <p data-tts><em>The Heart's Canvas</em> is his manifesto on art: that beauty is not in perfection but in connection, and that every heart is a canvas still waiting to be painted.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ FLOATING TTS BAR ══════════════════ -->
+<div class="tts-bar" role="region" aria-label="Narration controls">
+  <button class="tts-bar__play" id="ttsPlay" type="button" aria-label="Play narration">
+    <svg class="icon-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+    <svg class="icon-pause" viewBox="0 0 24 24" aria-hidden="true" style="display:none"><path d="M6 5h4v14H6zM14 5h4v14h-4z"/></svg>
+  </button>
+
+  <button class="tts-bar__stop" id="ttsStop" type="button" aria-label="Stop narration" hidden>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="6" width="12" height="12" rx="1.5"/></svg>
+  </button>
+
+  <div class="tts-bar__meta">
+    <span class="tts-bar__status" id="ttsStatus">Listen to this page</span>
+    <div class="tts-bar__track"><div class="tts-bar__fill" id="ttsFill"></div></div>
+  </div>
+
+  <select id="ttsRate" aria-label="Speech speed">
+    <option value="0.8">0.8×</option>
+    <option value="1" selected>1.0×</option>
+    <option value="1.15">1.15×</option>
+    <option value="1.3">1.3×</option>
+    <option value="1.5">1.5×</option>
+  </select>
+
+  <select id="ttsVoice" aria-label="Narration voice"></select>
+</div>
+
+<script>
+/* ══════════════════════════════════════════════════════════════
+   MODAL LOGIC (PAINTING & AUTHOR)
+   ══════════════════════════════════════════════════════════════ */
+(function () {
+  // --- Painting Modal ---
+  const paintModal = document.getElementById('paintingModal');
+  const paintClose = document.getElementById('closeModal');
+  const fileInput = document.getElementById('fileInput');
+  const modalImg = document.getElementById('modalPaintingImg');
+  const uploadFallback = document.getElementById('uploadFallback');
+  
+  const paintTriggers = [
+    document.getElementById('pillarPainting'),
+    document.getElementById('chipPainting'),
+    document.getElementById('threadPainting'),
+    document.getElementById('footerPainting')
+  ];
+
+  function openPaint(e) {
+    if (e) e.preventDefault();
+    paintModal.classList.add('is-open');
+    paintModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => paintClose.focus(), 100);
+  }
+
+  function closePaint() {
+    paintModal.classList.remove('is-open');
+    paintModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    const ttsText = paintModal.querySelector('[data-tts]');
+    if (ttsText && ttsText.classList.contains('is-speaking')) {
+      if (window.__tts && window.__tts.stop) window.__tts.stop();
+    }
+  }
+
+  if (fileInput) {
+    fileInput.addEventListener('change', function(e) {
+      const file = e.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(event) {
+          modalImg.src = event.target.result;
+          modalImg.style.display = 'block';
+          uploadFallback.style.display = 'none';
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  }
+
+  paintTriggers.forEach(btn => { if (btn) btn.addEventListener('click', openPaint); });
+  paintClose.addEventListener('click', closePaint);
+  paintModal.addEventListener('click', (e) => { if (e.target === paintModal) closePaint(); });
+
+  // --- Author Modal ---
+  const authorModal = document.getElementById('authorModal');
+  const authorClose = document.getElementById('closeAuthorModal');
+  
+  const authorTriggers = [
+    document.getElementById('chipAuthor'),
+    document.getElementById('footerAuthor')
+  ];
+
+  function openAuthor(e) {
+    if (e) e.preventDefault();
+    authorModal.classList.add('is-open');
+    authorModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => authorClose.focus(), 100);
+  }
+
+  function closeAuthor() {
+    authorModal.classList.remove('is-open');
+    authorModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    const ttsText = authorModal.querySelector('[data-tts]');
+    if (ttsText && ttsText.classList.contains('is-speaking')) {
+      if (window.__tts && window.__tts.stop) window.__tts.stop();
+    }
+  }
+
+  authorTriggers.forEach(btn => { if (btn) btn.addEventListener('click', openAuthor); });
+  authorClose.addEventListener('click', closeAuthor);
+  authorModal.addEventListener('click', (e) => { if (e.target === authorModal) closeAuthor(); });
+
+  // Global Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      if (paintModal.classList.contains('is-open')) closePaint();
+      if (authorModal.classList.contains('is-open')) closeAuthor();
+    }
+  });
+})();
+
+/* ══════════════════════════════════════════════════════════════
+   TEXT-TO-SPEECH NARRATION ENGINE
+   ══════════════════════════════════════════════════════════════ */
+(function () {
+  'use strict';
+
+  if (!('speechSynthesis' in window)) {
+    document.body.classList.add('no-tts');
+    return;
+  }
+
+  const synth = window.speechSynthesis;
+  const ICON_SPEAK = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M19 5a9 9 0 0 1 0 14"/></svg>';
+  const ICON_STOP  = '<svg viewBox="0 0 24 24" aria-hidden="true"><rect x="7" y="7" width="10" height="10" rx="1"/></svg>';
+
+  const blocks = Array.from(document.querySelectorAll('[data-tts]'));
+  const textMap = new WeakMap();
+
+  function extractText(el) {
+    const clone = el.cloneNode(true);
+    clone.querySelectorAll('.tts-skip, .tts-btn, .tts-row, .pillar__cta, .resource__go, script, style')
+         .forEach(n => n.remove());
+    return (clone.textContent || '').replace(/\s+/g, ' ').trim();
+  }
+
+  blocks.forEach(el => textMap.set(el, extractText(el)));
+
+  blocks.forEach(el => {
+    const btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'tts-btn';
+    btn.setAttribute('aria-label', 'Listen to this section');
+    btn.innerHTML = ICON_SPEAK;
+
+    if (/^H[1-4]$/.test(el.tagName)) {
+      el.appendChild(document.createTextNode(' '));
+      el.appendChild(btn);
+      btn.classList.add('tts-btn--inline');
+    } else {
+      const row = document.createElement('div');
+      row.className = 'tts-row';
+      row.appendChild(btn);
+      el.appendChild(row);
+    }
+
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      if (currentEl === el && (playing || paused)) {
+        stopAll();
+      } else {
+        speakBlock(el);
+      }
+    });
+  });
+
+  let queue = [];
+  let cursor = 0;
+  let token = 0;
+  let playing = false;
+  let paused = false;
+  let currentEl = null;
+  let chosenVoice = null;
+  let rate = 1;
+
+  const playBtn  = document.getElementById('ttsPlay');
+  const stopBtn  = document.getElementById('ttsStop');
+  const statusEl = document.getElementById('ttsStatus');
+  const fillEl   = document.getElementById('ttsFill');
+  const rateSel  = document.getElementById('ttsRate');
+  const voiceSel = document.getElementById('ttsVoice');
+  const iconPlay  = playBtn.querySelector('.icon-play');
+  const iconPause = playBtn.querySelector('.icon-pause');
+
+  function chunk(text, max) {
+    max = max || 160;
+    if (text.length <= max) return [text];
+    const parts = text.match(/[^.!?…]+[.!?…]+["'”’)\]]*\s*|[^.!?…]+$/g) || [text];
+    const out = [];
+    let buf = '';
+    for (let i = 0; i < parts.length; i++) {
+      const s = parts[i];
+      if ((buf + s).length > max && buf.trim()) {
+        out.push(buf.trim());
+        buf = s;
+      } else {
+        buf += s;
+      }
+    }
+    if (buf.trim()) out.push(buf.trim());
+    const final = [];
+    out.forEach(c => {
+      if (c.length <= max) { final.push(c); return; }
+      for (let i = 0; i < c.length; i += max) final.push(c.slice(i, i + max));
+    });
+    return final;
+  }
+
+  function setCurrent(el) {
+    if (currentEl === el) return;
+    if (currentEl) {
+      currentEl.classList.remove('is-speaking');
+      const b = currentEl.querySelector('.tts-btn');
+      if (b) { b.classList.remove('is-active'); b.innerHTML = ICON_SPEAK; }
+    }
+    currentEl = el;
+    if (el) {
+      el.classList.add('is-speaking');
+      const b = el.querySelector('.tts-btn');
+      if (b) { b.classList.add('is-active'); b.innerHTML = ICON_STOP; }
+      const r = el.getBoundingClientRect();
+      const offscreen = r.top < 90 || r.bottom > window.innerHeight - 110;
+      if (offscreen) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  }
+
+  function updateUI() {
+    const active = playing || paused;
+    iconPlay.style.display  = active && !paused ? 'none' : '';
+    iconPause.style.display = active && !paused ? '' : 'none';
+    playBtn.setAttribute('aria-label', paused ? 'Resume narration' : (playing ? 'Pause narration' : 'Play narration'));
+    stopBtn.hidden = !active;
+    if (!active) {
+      statusEl.textContent = 'Listen to this page';
+      fillEl.style.width = '0%';
+    } else if (paused) {
+      statusEl.textContent = 'Paused';
+    } else {
+      statusEl.textContent = 'Narrating…';
+    }
+  }
+
+  function updateProgress() {
+    if (!queue.length) return;
+    const pct = (cursor / queue.length) * 100;
+    fillEl.style.width = Math.min(pct, 100) + '%';
+  }
+
+  function startQueue() {
+    token++;
+    const myToken = token;
+    playing = true;
+    paused = false;
+    updateUI();
+    try { synth.cancel(); } catch (e) {}
+    setTimeout(() => {
+      if (myToken === token) speakNext(myToken);
+    }, 70);
+  }
+
+  function speakNext(tk) {
+    if (tk !== token) return;
+    if (cursor >= queue.length) { finish(); return; }
+    const item = queue[cursor];
+    setCurrent(item.el);
+    updateProgress();
+    const u = new SpeechSynthesisUtterance(item.text);
+    u.rate = rate;
+    u.pitch = 1;
+    u.volume = 1;
+    if (chosenVoice) {
+      u.voice = chosenVoice;
+      u.lang = chosenVoice.lang;
+    } else {
+      u.lang = 'en-US';
+    }
+    u.onend = function () {
+      if (tk !== token) return;
+      cursor++;
+      speakNext(tk);
+    };
+    u.onerror = function (e) {
+      if (tk !== token) return;
+      if (e && (e.error === 'interrupted' || e.error === 'canceled')) return;
+      cursor++;
+      speakNext(tk);
+    };
+    synth.speak(u);
+  }
+
+  function finish() {
+    playing = false;
+    paused = false;
+    queue = [];
+    cursor = 0;
+    setCurrent(null);
+    fillEl.style.width = '100%';
+    statusEl.textContent = 'Finished';
+    updateUI();
+    setTimeout(() => {
+      if (!playing) { fillEl.style.width = '0%'; statusEl.textContent = 'Listen to this page'; }
+    }, 1600);
+  }
+
+  function stopAll() {
+    token++;
+    try { synth.cancel(); } catch (e) {}
+    playing = false;
+    paused = false;
+    queue = [];
+    cursor = 0;
+    setCurrent(null);
+    updateUI();
+  }
+
+  function speakBlock(el) {
+    const raw = textMap.get(el);
+    if (!raw) return;
+    queue = chunk(raw).map(t => ({ text: t, el: el }));
+    cursor = 0;
+    startQueue();
+  }
+
+  function speakAll() {
+    queue = [];
+    blocks.forEach(el => {
+      const paintModal = document.getElementById('paintingModal');
+      const authorModal = document.getElementById('authorModal');
+      
+      if (paintModal && !paintModal.classList.contains('is-open') && paintModal.contains(el)) return;
+      if (authorModal && !authorModal.classList.contains('is-open') && authorModal.contains(el)) return;
+      
+      const raw = textMap.get(el);
+      if (!raw) return;
+      chunk(raw).forEach(t => queue.push({ text: t, el: el }));
+    });
+    cursor = 0;
+    startQueue();
+  }
+
+  function togglePlay() {
+    if (playing && !paused) {
+      try { synth.pause(); } catch (e) {}
+      paused = true;
+      updateUI();
+      return;
+    }
+    if (playing && paused) {
+      try { synth.resume(); } catch (e) {}
+      paused = false;
+      updateUI();
+      return;
+    }
+    speakAll();
+  }
+
+  playBtn.addEventListener('click', togglePlay);
+  stopBtn.addEventListener('click', stopAll);
+
+  const heroListen = document.getElementById('heroListen');
+  if (heroListen) heroListen.addEventListener('click', speakAll);
+
+  const listenAll2 = document.getElementById('listenAll2');
+  if (listenAll2) listenAll2.addEventListener('click', speakAll);
+
+  rateSel.addEventListener('change', () => {
+    rate = parseFloat(rateSel.value) || 1;
+  });
+
+  function populateVoices() {
+    const all = synth.getVoices();
+    if (!all || !all.length) return;
+    let list = all.filter(v => /^en/i.test(v.lang));
+    if (!list.length) list = all;
+    voiceSel.innerHTML = '';
+    list.forEach((v, i) => {
+      const opt = document.createElement('option');
+      opt.value = String(i);
+      opt.textContent = v.name.replace(/^(Microsoft|Google)\s+/i, '') + ' · ' + v.lang;
+      voiceSel.appendChild(opt);
+    });
+    let pref = list.findIndex(v => /en-US/i.test(v.lang) && /(natural|samantha|aria|jenny|google us english)/i.test(v.name));
+    if (pref < 0) pref = list.findIndex(v => /en-US/i.test(v.lang));
+    if (pref < 0) pref = 0;
+    chosenVoice = list[pref];
+    voiceSel.value = String(pref);
+  }
+
+  populateVoices();
+  if (typeof synth.onvoiceschanged !== 'undefined') {
+    synth.addEventListener('voiceschanged', populateVoices);
+  }
+  setTimeout(populateVoices, 400);
+  setTimeout(populateVoices, 1400);
+
+  voiceSel.addEventListener('change', () => {
+    const all = synth.getVoices();
+    let list = all.filter(v => /^en/i.test(v.lang));
+    if (!list.length) list = all;
+    chosenVoice = list[parseInt(voiceSel.value, 10)] || null;
+  });
+
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden && playing && !paused) {
+      try { synth.pause(); } catch (e) {}
+      paused = true;
+      updateUI();
+    }
+  });
+
+  window.__tts = { speakAll: speakAll, stop: stopAll };
+  updateUI();
+})();
+
+/* ══════════════════════════════════════════════════════════════
+   SCROLL REVEAL
+   ══════════════════════════════════════════════════════════════ */
+(function () {
+  const items = document.querySelectorAll('.reveal');
+  if (!('IntersectionObserver' in window)) {
+    items.forEach(el => el.classList.add('is-in'));
+    return;
+  }
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+  items.forEach(el => io.observe(el));
+})();
+
+/* ══════════════════════════════════════════════════════════════
+   READING PROGRESS BAR
+   ══════════════════════════════════════════════════════════════ */
+(function () {
+  const bar = document.getElementById('progress');
+  if (!bar) return;
+  let ticking = false;
+  function update() {
+    const h = document.documentElement;
+    const max = h.scrollHeight - h.clientHeight;
+    const pct = max > 0 ? (h.scrollTop / max) * 100 : 0;
+    bar.style.width = pct + '%';
+    ticking = false;
+  }
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(update);
+      ticking = true;
+    }
+  }, { passive: true });
+  update();
+})();
+</script>
+
+</body>
+</html>
